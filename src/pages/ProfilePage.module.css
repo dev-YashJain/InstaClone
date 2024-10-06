@@ -1,0 +1,272 @@
+/* src/pages/Profilepage.module.css */
+.profileSection {
+  display: flex;
+  box-sizing: border-box;
+  width: 100vw;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.left {
+  flex: 0.2;
+}
+
+.userProfile {
+  flex: 0.8;
+  padding: 20px;
+  border: 1px solid gray;
+}
+
+.profileStart {
+  padding-top: 30px;
+  display: flex;
+  padding-left: 100px;
+  align-items: center;
+  height: 40vh;
+}
+
+.bandImage img {
+  border-radius: 50%;
+  height: 25vh;
+  width: 25vh;
+}
+
+.profileHeader {
+  display: flex;
+  align-items: center;
+}
+
+.profileHeaderRight {
+  padding-left: 80px;
+  line-height: 0.7;
+}
+
+.profileStats span {
+  margin-right: 20px;
+}
+
+.profileHeader button {
+  margin: 0 10px;
+  border-radius: 6px;
+  padding: 6px;
+  background-color: lightgrey;
+  color: black;
+  border: none; /* Remove default border */
+}
+
+body.dark-mode .profileHeader button {
+  background-color: #4a4a4a;
+  color: white;
+}
+
+.highlights {
+  display: flex;
+  margin-left: 4rem;
+  border-bottom: 1px solid #333;
+}
+
+.highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  justify-content: center;
+}
+
+.highlight img {
+  height: 12vh;
+  width: 12vh;
+  border-radius: 50%;
+}
+
+/* Existing CSS for other components */
+.postsSection {
+  flex-direction: column;
+}
+
+.navigator {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+.navigator div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 3rem;
+  font-size: small;
+}
+
+/* Grid container for the posts */
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  gap: 5px; /* Gap between images */
+  padding: 10px 30px; /* Padding around the grid */
+}
+
+/* Styling for each post image */
+.postImg {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Ensures the images are square */
+  object-fit: cover; /* Cover the entire area of the square */
+  border-radius: 4px; /* Optional: Rounded corners */
+}
+
+@media (max-width: 780px) {
+  .profileSection,
+  .userProfile {
+    margin: 0;
+    border-right: none;
+    padding: 0;
+    justify-content: center;
+    border:none;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .topNav {
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+  }
+
+  .div2 {
+    padding-top: 25px;
+    display: flex;
+    align-items: normal;
+    margin-left: 100px;
+  }
+  
+  .div2 p {
+    margin-left: 20px;
+    font-size: 25px;
+    padding-bottom: 15px;
+    padding-right: 8px;
+  }
+
+  .div3 {
+    margin-left: 120px;
+    display: flex;
+  }
+
+  .div3 .btn2 {
+    margin-left: 5px;
+  }
+
+  .div3 button {
+    border-radius: 8px;
+    padding: 6px;
+    width: 120px;
+    background-color: lightgrey;
+    border: none;
+  }
+
+  body.dark-mode .div3 button {
+    background-color: #4a4a4a;
+  }
+
+  .div4 {
+    display: flex;
+    align-items: center;
+  }
+
+  .div6 {
+    padding: 10px;
+    margin-left: 10px;
+  }
+
+  .div5 img {
+    margin: 10px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+  }
+
+  .div6 button {
+    margin-bottom: 10px;
+    background-color: lightgray;
+    border: none;
+    padding: 6px;
+    width: 245px;
+    border-radius: 8px;
+  }
+
+  body.dark-mode .div6 button {
+    background-color: #4a4a4a;
+  }
+
+  .div7 {
+    margin: 20px;
+  }
+
+  .div8 {
+    margin-top: 20px;
+  }
+
+  .highlights {
+    display: flex;
+    align-items: baseline;
+    margin: 0;
+    border-bottom: none;
+    padding: 0;
+  }
+
+  .highlight {
+    margin: 0;
+    padding: 3px;
+  }
+
+  .highlight img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 1px solid purple;
+  }
+
+  .highlight p {
+    font-size: 12px;
+  }
+
+  .div9 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    align-items: center; /* Aligns items vertically */
+    text-align: center;
+    border-bottom: 1px solid #333; /* Optional styling */
+  }
+
+  .post,
+  .foll,
+  .follow {
+    flex: 1; /* Ensures equal width */
+    padding: 10px 0; /* Consistent padding */
+  }
+
+  .postText,
+  .follText,
+  .followText {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: gray; /* Lighter text for the labels */
+    margin: 0; /* Reset margin for consistency */
+  }
+  .postImg {
+    width: 30%;
+    padding: 6px;
+    border-radius: 10px;
+  }
+}

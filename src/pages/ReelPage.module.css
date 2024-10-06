@@ -1,0 +1,88 @@
+/* Reel Page Layout */
+.reelPage {
+    display: flex;
+    height: 100vh;
+}
+
+/* Left side navigation */
+.left {
+    width: 20vw; /* Fixed width for the navigation bar */
+    position: fixed; /* Keep the LeftSide fixed */
+    height: 100vh; /* Full height */
+}
+
+/* Videos Section */
+.videos {
+    margin-left: 35vw; /* Leave space for the LeftSide */
+    width: 30vw; /* Video section takes 30% of the viewport width */
+    height: 100vh; /* Full height */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    scroll-snap-type: y mandatory; /* Snap to each video */
+}
+
+/* Hide the scrollbar */
+.videos::-webkit-scrollbar {
+    display: none; /* Hide scrollbar in Chrome, Safari, and Opera */
+}
+
+.videos {
+    -ms-overflow-style: none; /* Hide scrollbar in Internet Explorer and Edge */
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+/* Video Container */
+.videoContainer {
+    position: relative; /* Position relative to allow absolute positioning of icons */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Each video takes full viewport height */
+    width: 100%; /* Full width */
+    scroll-snap-align: start; /* Snap each video to the start */
+    margin-bottom: 20px; /* Add gap between videos */
+}
+
+/* Video Styling */
+.videoItem {
+    height: calc(101% ); /* Adjust video height to maintain gap */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px; /* Add border-radius for rounded corners */
+}
+
+/* Icons inside each video */
+.videoIcons {
+    position: absolute; /* Position icons absolutely within the video container */
+    bottom: 60px; /* Position the icons at the bottom of the video */
+    right: 10px; /* Align the icons to the right side */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 40%; /* Control the space occupied by the icons */
+    padding: 10px;
+    z-index: 10; /* Ensure icons appear above the video */
+    color: #fff; /* White color for better visibility */
+}
+
+/* Like and Comment Icons styling */
+.likeDetails, .commentDetails {
+    display: flex;
+    font-size: 12px;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+/* Responsiveness for mobile */
+@media only screen and (max-width: 780px) {
+    .left {
+        display: none; /* Hide LeftSide on smaller screens */
+    }
+    .videos {
+        margin-left: 0; /* Videos take full width when LeftSide is hidden */
+        width: 100vw; /* Full width on mobile */
+    }
+}

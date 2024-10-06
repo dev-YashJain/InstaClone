@@ -1,0 +1,65 @@
+.App {
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%; /* Preventing overflow */
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Avoids horizontal scroll issues */
+}
+
+.leftSide {
+  flex: 0.20;
+}
+
+.middleSide {
+  flex: 0.55;
+  
+}
+
+.rightSide {
+  flex: 0.25;
+  margin-left: auto;
+}
+
+.lightMode {
+  background-color: white;
+  color: black;
+}
+
+.darkMode {
+  background-color: black;
+  color: white;
+}
+
+@media (max-width: 1144px) {
+  .rightSide {
+    display: none;
+  }
+}
+
+@media (max-width: 780px) {
+  .leftSide {
+    display: none;
+  }
+
+  .rightSide {
+    display: none;
+  }
+
+  .middleSide {
+    width: 100%; /* Fixes the issue of exceeding 100vw */
+  }
+
+  .profileStart {
+    padding-left: 20px;
+  }
+
+  .highlights {
+    margin-left: 0;
+  }
+}

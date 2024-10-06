@@ -1,0 +1,57 @@
+.parentContainer {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  /* border: 1px solid; */
+  margin-top: 5vh;
+  width: 90%;
+}
+.rightSideHome {
+  display: flex;
+
+  align-items: center;
+  /* border: 1px solid; */
+  /* Optional: Adds some padding for spacing */
+  padding: 2px 10px 10px 10px;
+}
+
+.profileImage {
+  height: 44px;
+  width: 44px;
+  padding: 0;
+  border: 2px solid plum;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileImage img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.texts {
+  flex-grow: 1; /* Allows the text to take up remaining space */
+  margin-left: 10px; /* Adds spacing between the profile image and the text */
+}
+
+.buttons {
+  color: #279cea;
+  font-size: small;
+  font-weight: 600;
+  margin-left: auto; /* Pushes the button to the far right */
+  cursor: pointer; /* Changes the cursor to a pointer on hover */
+}
+.separatorText {
+  flex-grow: 1;
+  margin-left: 10px;
+  display: flex;
+  padding: 10px;
+}
+.text2 {
+  margin-left: auto;
+  color: gray;
+}

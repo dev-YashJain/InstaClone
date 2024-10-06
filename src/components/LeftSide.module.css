@@ -1,0 +1,70 @@
+/* leftSide.css */
+.logoImg {
+  width: 100px;
+  height: 40px;
+}
+
+.logoPart {
+  margin-left: 15px;
+}
+
+.navBar {
+  margin-top: 15px;
+  margin-left: 3px;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Ensure relative positioning for absolute dropdown */
+}
+
+.leftSidePart {
+  padding-top: 25px;
+  position: fixed;
+}
+
+.icons {
+  font-size: large;
+  margin-right: 10px;
+}
+
+/* Dropdown Styling */
+.dropdown {
+  position: absolute;
+  top: 380px; /* Align with the "More" button */
+  left: 110%; /* Position to the right of the "More" button */
+  z-index: 10; /* Higher z-index to appear above other elements */
+/* Default background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownItem {
+  padding: 8px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between; /* Align text and toggle in one line */
+  align-items: center;
+}
+
+
+
+/* Dark Mode Styling */
+body.dark-mode {
+  background-color: black;
+  color: #ffffff;
+}
+
+
+
+body.dark-mode .dropdownItem {
+  color: #ffffff; /* Ensure dropdown item text is white */
+}
+
+
+.navLink {
+  text-decoration: none;
+  color: inherit; /* Inherit color based on dark/light mode */
+}
