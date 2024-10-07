@@ -10,20 +10,7 @@
   z-index: 1000;
 }
 
-.navItems {
-  display: flex;
-  color: gainsboro;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  flex: 1;
-}
 
-.navItems span {
-  font-size: 12px;
-  margin-top: 4px;
-}
 
 @media (max-width: 780px) {
   .bottomNavBar {

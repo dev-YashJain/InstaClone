@@ -17,15 +17,21 @@ interface StoryProps {
 }
 
 const StoryViewer: FC<StoryProps> = ({ stories, initialIndex, onClose }) => {
-    const [currentStoryIndex, setCurrentStoryIndex] = useState(initialIndex);
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [imageProgress, setImageProgress] = useState<number[]>(new Array(stories[initialIndex]?.stories.length).fill(0));
+    const [currentStoryIndex, setCurrentStoryIndex] = useState<number>(initialIndex);
+    const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
+
+    // Add a fallback to handle undefined story length safely
+    const initialStoryLength = stories[initialIndex]?.stories?.length || 0;
+    const [imageProgress, setImageProgress] = useState<number[]>(new Array(initialStoryLength).fill(0));
+
+    // Safe initialization with the correct length of stories, handling potential undefined values
     const [liked, setLiked] = useState<boolean[]>(new Array(stories.length).fill(false));
+
     const navigate = useNavigate();
 
-    // Memoize current story and image count for performance optimization
-    const currentStory = useMemo(() => stories[currentStoryIndex], [stories, currentStoryIndex]);
-    const imageCount = useMemo(() => currentStory?.stories?.length || 0, [currentStory]);
+    // Memoize current story and image count with explicit typing
+    const currentStory: Story | undefined = useMemo(() => stories[currentStoryIndex], [stories, currentStoryIndex]);
+    const imageCount: number = useMemo(() => currentStory?.stories?.length || 0, [currentStory]);
 
     // Navigate to the home page if there are no stories
     useEffect(() => {
@@ -40,7 +46,7 @@ const StoryViewer: FC<StoryProps> = ({ stories, initialIndex, onClose }) => {
             setImageProgress((prevProgress) => {
                 const updatedProgress = [...prevProgress];
                 if (updatedProgress[currentImageIndex] < 100) {
-                    updatedProgress[currentImageIndex] += (100 / 30); // Increment based on time interval
+                    updatedProgress[currentImageIndex] += 100 / 30; // Increment based on time interval
                 }
                 return updatedProgress;
             });

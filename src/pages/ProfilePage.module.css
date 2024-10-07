@@ -89,20 +89,7 @@ body.dark-mode .profileHeader button {
   flex-direction: column;
 }
 
-.navigator {
-  display: flex;
-  justify-content: center;
-  padding: 10px 0;
-  margin-bottom: 20px;
-}
 
-.navigator div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-right: 3rem;
-  font-size: small;
-}
 
 /* Grid container for the posts */
 .postsGrid {

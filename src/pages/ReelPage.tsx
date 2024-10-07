@@ -9,6 +9,7 @@ import BookmarkIcon from '@mui/icons-material/BookmarkBorderOutlined';
 import MoreIcon from '@mui/icons-material/MoreHorizOutlined';
 import LikedIcon from '@mui/icons-material/Favorite'; // Import the filled like icon
 import { DarkModeContext } from '../context/DarkModeContext'; // Import Dark Mode Context
+import ReelIcons from '../components/ReelIcons';
 
 const videos = [
     { id: 1, src: 'https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4', type: 'video/mp4' },
@@ -56,6 +57,7 @@ const ReelPage: FC = () => {
         }
     };
 
+
     return (
         <div className={`${styles.reelPage} ${darkMode ? styles.dark : styles.light}`}>
             <div className={styles.left}>
@@ -90,15 +92,14 @@ const ReelPage: FC = () => {
                                 <CommentIcon />
                                 <p>84</p>
                             </div>
-                            <div>
-                                <ShareIcon />
-                            </div>
-                            <div>
-                                <BookmarkIcon />
-                            </div>
-                            <div>
-                                <MoreIcon />
-                            </div>
+                            <ReelIcons
+                                reelItems={[
+                                    { Icon: ShareIcon },
+                                    { Icon: BookmarkIcon },
+                                    { Icon: MoreIcon }
+                                ]}
+                            />
+
                         </div>
                     </div>
                 ))}

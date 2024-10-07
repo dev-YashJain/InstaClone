@@ -11,28 +11,30 @@ import postData from '../post.json'; // Import the post data
 import BottomNavBar from '../components/BottomNavbar'; // Import the BottomNavBar component
 import Switch from '@mui/material/Switch';
 import { DarkModeContext } from '../context/DarkModeContext'; // Import the context
+import ProfileNavigator from '../components/ProfileNavigator';
 
 // Define the type for the post data
 interface PostData {
     post_url: string;
 }
 
+const navItems = [
+    { Icon: Post, label: 'POSTS' },
+    { Icon: Reels, label: 'REELS' },
+    { Icon: Saved, label: 'SAVED' },
+    { Icon: Tagged, label: 'TAGGED' },
+];
+
 const ProfilePage: FC = () => {
     const [posts, setPosts] = useState<PostData[]>([]);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
     const { darkMode, toggleDarkMode } = useContext(DarkModeContext); // Consume the context
     const [settingsOpen, setSettingsOpen] = useState<boolean>(false); // State to toggle settings menu
     const settingsRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Fetch posts from post.json
         setPosts(postData.post);
-
-        // Update window width on resize
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
+        const handleResize = () => setWindowWidth(window.innerWidth);
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -57,8 +59,76 @@ const ProfilePage: FC = () => {
     }, [settingsOpen]);
 
     const toggleSettings = () => {
-        setSettingsOpen(!settingsOpen);
+        setSettingsOpen(prev => !prev);
     };
+
+    const renderProfileHeader = () => (
+        <div className={classes.profileHeaderSection}>
+            <div className={classes.profileStart}>
+                <div className={classes.bandImage}>
+                    <img
+                        className={classes.img}
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUEFplMonL0QjS9WkOA64aIDjFXJCHf2VwMA&s"
+                        alt="bandLogo"
+                    />
+                </div>
+                <div className={classes.profileHeaderRight}>
+                    <div className={classes.profileHeader}>
+                        <p>thelucidcage</p>
+                        <button>Edit profile</button>
+                        <button>View archive</button>
+                        <button>Ad tools</button>
+                        <SettingsIcon onClick={toggleSettings} style={{ cursor: 'pointer' }} />
+                        {settingsOpen && (
+                            <div className={classes.settingsDropdown} ref={settingsRef}>
+                                <div className={classes.dropdownItem}>Settings</div>
+                                <div className={classes.dropdownItem}>
+                                    <span>Dark Mode</span>
+                                    <Switch checked={darkMode} onChange={toggleDarkMode} />
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                    <div className={classes.profileStats}>
+                        <span>25 posts</span>
+                        <span>356 followers</span>
+                        <span>6 following</span>
+                    </div>
+                    <div className={classes.profileDescription}>
+                        <p>Lucid Cage</p>
+                        <p>Musician/band</p>
+                        <p>Can we ever reach the light?</p>
+                    </div>
+                    <div className={classes.profileContact}>
+                        <p>.</p>
+                        <p>DM for collaboration</p>
+                        <p>Email: contact.thelucidcage@gmail.com</p>
+                    </div>
+                    <div className={classes.profileInsights}>
+                        <p>26.9K accounts reached in the last 30 days.</p>
+                        <p>View insights</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderHighlights = () => (
+        <div className={classes.highlights}>
+            <div className={classes.highlight}>
+                <img src="https://cdn.media.amplience.net/i/metallica/ride-the-lightning_cover" alt="" />
+                <p>Performances</p>
+            </div>
+            <div className={classes.highlight}>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSS4gnm19AXOWtl3TOi8-Vt0R8EHF2Aa0G2Q&s" alt="" />
+                <p>BandMates</p>
+            </div>
+            <div className={classes.highlight}>
+                <AddIcon style={{ fontSize: 85 }} />
+                <p>New</p>
+            </div>
+        </div>
+    );
 
     return (
         <div className={classes.profileSection}>
@@ -66,199 +136,72 @@ const ProfilePage: FC = () => {
                 <LeftSide />
             </div>
             <div className={classes.userProfile}>
-                {/* Conditional rendering based on window width */}
                 {windowWidth >= 780 ? (
                     <>
-                        {/* Profile Header Section */}
-                        <div className={classes.profileHeaderSection}>
-                            <div className={classes.profileStart}>
-                                <div className={classes.bandImage}>
-                                    <img
-                                        className={classes.img}
-                                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUEFplMonL0QjS9WkOA64aIDjFXJCHf2VwMA&s"
-                                        alt="bandLogo"
-                                    />
-                                </div>
-
-                                <div className={classes.profileHeaderRight}>
-                                    <div className={classes.profileHeader}>
-                                        <p>thelucidcage</p>
-                                        <button>Edit profile</button>
-                                        <button>View archive</button>
-                                        <button>Ad tools</button>
-                                        <SettingsIcon onClick={toggleSettings} style={{ cursor: 'pointer' }} />
-                                        {settingsOpen && (
-                                            <div className={classes.settingsDropdown} ref={settingsRef}>
-                                                <div className={classes.dropdownItem}>Settings</div>
-                                                <div className={classes.dropdownItem}>
-                                                    <span>Dark Mode</span>
-                                                    <Switch checked={darkMode} onChange={toggleDarkMode} />
-                                                </div>
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className={classes.profileStats}>
-                                        <span>25 posts</span>
-                                        <span>356 followers</span>
-                                        <span>6 following</span>
-                                    </div>
-                                    <div className={classes.profileDescription}>
-                                        <p>Lucid Cage</p>
-                                        <p>Musician/band</p>
-                                        <p>Can we ever reach the light?</p>
-                                    </div>
-                                    <div className={classes.profileContact}>
-                                        <p>.</p>
-                                        <p>DM for collaboration</p>
-                                        <p>Email: contact.thelucidcage@gmail.com</p>
-                                    </div>
-                                    <div className={classes.profileInsights}>
-                                        <p>26.9K accounts reached in the last 30 days.</p>
-                                        <p>View insights</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Highlights Section */}
-                        <div className={classes.highlights}>
-                            <div className={classes.highlight}>
-                                <img
-                                    src="https://cdn.media.amplience.net/i/metallica/ride-the-lightning_cover"
-                                    alt=""
-                                />
-                                <p>Performances</p>
-                            </div>
-                            <div className={classes.highlight}>
-                                <img
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSS4gnm19AXOWtl3TOi8-Vt0R8EHF2Aa0G2Q&s"
-                                    alt=""
-                                />
-                                <p>BandMates</p>
-                            </div>
-                            <div className={classes.highlight}>
-                                <AddIcon style={{ fontSize: 85 }} />
-                                <p>New</p>
-                            </div>
-                        </div>
-
-                        {/* Posts Section */}
+                        {renderProfileHeader()}
+                        {renderHighlights()}
                         <div className={classes.postsSection}>
-                            <div className={classes.navigator}>
-                                <div>
-                                    <Post />
-                                    POSTS
-                                </div>
-                                <div>
-                                    <Reels />
-                                    REELS
-                                </div>
-                                <div>
-                                    <Saved />
-                                    SAVED
-                                </div>
-                                <div>
-                                    <Tagged />
-                                    TAGGED
-                                </div>
-                            </div>
+                            <ProfileNavigator navItems={navItems} showLabels={true} />
                             <div className={classes.postsGrid}>
                                 {posts.map((post, index) => (
-                                    <img
-                                        key={index}
-                                        src={post.post_url}
-                                        alt={`Post ${index}`}
-                                        className={classes.postImg}
-                                    />
+                                    <img key={index} src={post.post_url} alt={`Post ${index}`} className={classes.postImg} />
                                 ))}
                             </div>
                         </div>
                     </>
                 ) : (
-                    <>
-                        {/* Mobile View Profile Page */}
-                        <div className={classes.proPage}>
-                            <div className={classes.topNav}>
-                                <SettingsIcon onClick={toggleSettings} style={{ cursor: 'pointer' }} />
-                                <p>thelucidcage</p>
-                                <p>@</p>
-                                {settingsOpen && (
-                                    <div className={classes.settingsDropdown} ref={settingsRef}>
-                                        <div className={classes.dropdownItem}>Settings</div>
-                                        <div className={classes.dropdownItem}>
-                                            <span>Dark Mode</span>
-                                            <Switch checked={darkMode} onChange={toggleDarkMode} />
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className={classes.div2}>
-                                <p>thelucidcage</p>
-                                <SettingsIcon onClick={toggleSettings} style={{ cursor: 'pointer' }} />
-                            </div>
-
-                            <div className={classes.div3}>
-                                <button className={classes.btn1}>Edit Profile</button>
-                                <button className={classes.btn2}>View Archive</button>
-                            </div>
-
-                            <div className={classes.div4}>
-                                <div className={classes.div5}>
-                                    <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUEFplMonL0QjS9WkOA64aIDjFXJCHf2VwMA&s"} alt="bandImage" />
-                                </div>
-                                <div className={classes.div6}>
-                                    <button>Ad Tools</button>
-                                    <p>26.9K accounts reached in the last 30  <br /> View insights</p>
-                                </div>
-                            </div>
-
-                            <div className={classes.div7}>
-                                <div className={classes.profileDescription}>
-                                    <p>Lucid Cage <br />Musician/band <br />Can we ever reach the light?</p>
-                                </div>
-                                <div className={classes.profileContact}>
-                                    <p>. <br /> DM for collaboration <br />Email: contact.thelucidcage@gmail.com</p>
-                                </div>
-                            </div>
-
-                            <div className={classes.div8}>
-                                <div className={classes.highlights}>
-                                    <div className={classes.highlight}>
-                                        <img
-                                            src="https://cdn.media.amplience.net/i/metallica/ride-the-lightning_cover"
-                                            alt=""
-                                        />
-                                        <p>Perf!</p>
-                                    </div>
-                                    <div className={classes.highlight}>
-                                        <img
-                                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSS4gnm19AXOWtl3TOi8-Vt0R8EHF2Aa0G2Q&s"
-                                            alt=""
-                                        />
-                                        <p>BM!</p>
-                                    </div>
-                                    <div className={classes.highlight}>
-                                        <AddIcon style={{ fontSize: 50 }} />
-                                        <p>New</p>
+                    <div className={classes.proPage}>
+                        <div className={classes.topNav}>
+                            <SettingsIcon onClick={toggleSettings} style={{ cursor: 'pointer' }} />
+                            <p>thelucidcage</p>
+                            {settingsOpen && (
+                                <div className={classes.settingsDropdown} ref={settingsRef}>
+                                    <div className={classes.dropdownItem}>Settings</div>
+                                    <div className={classes.dropdownItem}>
+                                        <span>Dark Mode</span>
+                                        <Switch checked={darkMode} onChange={toggleDarkMode} />
                                     </div>
                                 </div>
+                            )}
+                        </div>
+                        <div className={classes.div2}>
+                            <p>thelucidcage</p>
+                            <SettingsIcon onClick={toggleSettings} style={{ cursor: 'pointer' }} />
+                        </div>
+                        <div className={classes.div3}>
+                            <button className={classes.btn1}>Edit Profile</button>
+                            <button className={classes.btn2}>View Archive</button>
+                        </div>
+                        <div className={classes.div4}>
+                            <div className={classes.div5}>
+                                <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUEFplMonL0QjS9WkOA64aIDjFXJCHf2VwMA&s"} alt="bandImage" />
                             </div>
-                            <div className={classes.postsSection}>
-                                {posts.map((post, index) => (
-                                    <img
-                                        key={index}
-                                        src={post.post_url}
-                                        alt={`Post ${index}`}
-                                        className={classes.postImg}
-                                    />
-                                ))}
+                            <div className={classes.div6}>
+                                <button>Ad Tools</button>
+                                <p>26.9K accounts reached in the last 30 <br /> View insights</p>
                             </div>
                         </div>
-                    </>
+                        <div className={classes.div7}>
+                            <div className={classes.profileDescription}>
+                                <p>Lucid Cage <br />Musician/band <br />Can we ever reach the light?</p>
+                            </div>
+                            <div className={classes.profileContact}>
+                                <p>. <br /> DM for collaboration <br />Email: contact.thelucidcage@gmail.com</p>
+                            </div>
+                        </div>
+                        <div className={classes.div8}>
+                            {renderHighlights()}
+                        </div>
+                        <ProfileNavigator navItems={navItems} showLabels={false} />
+                        <div className={classes.postsSection}>
+                            {posts.map((post, index) => (
+                                <img key={index} src={post.post_url} alt={`Post ${index}`} className={classes.postImg} />
+                            ))}
+                        </div>
+                    </div>
                 )}
             </div>
-            <BottomNavBar /> 
+            <BottomNavBar />
         </div>
     );
 };

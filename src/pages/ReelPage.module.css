@@ -54,12 +54,12 @@
 /* Icons inside each video */
 .videoIcons {
     position: absolute; /* Position icons absolutely within the video container */
-    bottom: 60px; /* Position the icons at the bottom of the video */
+    bottom: -100px; /* Position the icons at the bottom of the video */
     right: 10px; /* Align the icons to the right side */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+
     height: 40%; /* Control the space occupied by the icons */
     padding: 10px;
     z-index: 10; /* Ensure icons appear above the video */
@@ -84,5 +84,8 @@
     .videos {
         margin-left: 0; /* Videos take full width when LeftSide is hidden */
         width: 100vw; /* Full width on mobile */
+    }
+    .videoIcons{
+        bottom: -20px;
     }
 }

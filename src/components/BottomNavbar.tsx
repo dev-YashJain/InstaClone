@@ -1,26 +1,16 @@
-import { Link } from 'react-router-dom';
+// BottomNavbar.js
 import HomeIcon from '@mui/icons-material/Home';
 import ReelsIcon from '@mui/icons-material/SlowMotionVideo';
 import ProfileIcon from '@mui/icons-material/AccountCircle';
+import NavItem from './RoutePages'; // Import the NavItem component
 import classes from './BottomNavbar.module.css'; // Updated import for CSS Module
 
 const BottomNavBar = () => {
     return (
-        <div className={classes.bottomNavBar}> {/* Updated className */}
-            <Link to="/" className={classes.navItems}> {/* Updated className */}
-                <HomeIcon />
-                {/* <span>Home</span> */}
-            </Link>
-            <div className={classes.navItems}> {/* Updated className */}
-                <Link to="/reelPage" className={classes.navItems}> {/* Updated className */}
-                    <ReelsIcon />
-                    {/* <span>Reels</span> */}
-                </Link>
-            </div>
-            <Link to="/profilePage" className={classes.navItems}> {/* Updated className */}
-                <ProfileIcon />
-                {/* <span>Profile</span> */}
-            </Link>
+        <div className={classes.bottomNavBar}>
+            <NavItem to="/" icon={HomeIcon} />
+            <NavItem to="/reelPage" icon={ReelsIcon} />
+            <NavItem to="/profilePage" icon={ProfileIcon} />
         </div>
     );
 };

@@ -1,0 +1,14 @@
+.RoutePages {
+    display: flex;
+    color: gainsboro;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    flex: 1;
+  }
+  
+  .RoutePages span {
+    font-size: 12px;
+    margin-top: 4px;
+  }
